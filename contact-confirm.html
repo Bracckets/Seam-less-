@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen"/>
+    <meta charset="UTF-8">
+    <meta name="author" content="Ahmed Shewaikan">
+    <meta name="description" content="Time Management solutions for Enterprises and individuals.">
+    <meta name="keywords" content="Time Management, Organizer, Task Distribution">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seam[less]: Home Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header class="top-header">
+        <a href="index.html">
+            <span class="website-name"> Seam[less]</span>
+        </a>
+
+        <img id="nav-hamburger" class="navbarIcon" src="icons/icn menu .icn-xs.png">
+
+    </header>
+    <nav class="navigation" id="navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="current-page"><a href="contact.html"> Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="content-about">
+            <u style="color: ghostwhite; text-underline-offset: 10px;">
+                <h2> Contact Us</h2>
+            </u>
+            <h2 style="color: rgb(4, 252, 4)"> Your Message has been sent. Thank you! </h2>
+        </div>
+        
+        <div class="card-content-contact">
+            <div class="horizontal-container">
+                <article class="article-block">
+
+                    <img id="clock-icon" src="icons/contact-us.png">
+                    <h3 class="paragraph-title">
+                        Reach us directly!
+                    </h3>
+                    <p class="paragraph">
+                    <ul style="list-style:square; color: white;">
+                        <li>Email: s202026720@kfupm.edu.sa</li>
+                        <li>Github: Bracckets</li>
+                    </ul>
+                    </p>
+                </article>
+                <article class="article-block">
+
+                    <img id="clock-icon" src="icons/contact-form.png">
+                    <h3 class="paragraph-title">
+                        Or fill out the next Form
+                    </h3>
+                    <p class="paragraph">
+                    We will reach you as soon as we can! Just Make sure 
+                    to enter the right credintials
+                    </p>
+                </article>
+            </div>
+            
+            <article class="article-block">
+
+                <img id="clock-icon" src="icons/contact-form.png">
+                <h3 class="paragraph-title">
+                     Contact Form
+                </h3>
+                <div class="contact-form">
+                    <form action="contact-confirm.html">
+                        <label for="fname-input"> First Name* </label>
+                        <input required="" type="text" id="fname-input" name="fname" placeholder="your first name...">
+        
+                        <label for="lname-input"> Last Name* </label>
+                        <input required="" type="text" id="lname-input" name="lname" placeholder="your last name...">
+        
+                        <label for="email-input"> Your Email* </label>
+                        <input required="" type="text" id="email-input" name="lname" placeholder="eg: BobSimon23@gmail.com">
+        
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="Saudi Arabia"> Saudi Arabia</option>
+                            <option value="Morocco">Morocco</option>
+                            <option value="UAE">The United Arab Emirates </option>
+                            <option value="USA"> The United States Of America </option>
+                            <option value="global"> Other </option>
+                        </select>
+        
+                        <label for="subject"> Subject* </label>
+                        <textarea required="" id="subject" name="subject" placeholder="Feel free to inquire.."
+                            style="height: 300px; width: 100%;"></textarea>
+        
+                        <input type="submit" value="Submit">
+                    </form>
+            </article>
+        </div>
+        <footer>
+            All rights reserved. Made by [ Brackets ]. Contact us: s202026720@kfupm.edu.sa
+        </footer>
+    </main>
+</body>
+<script src="navScript.js"></script>
+</html>
