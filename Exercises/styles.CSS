@@ -144,7 +144,7 @@ nav {
     flex-direction: column;
     align-items:center;
     gap: 20px;
-    border-radius: 1rem;
+    border-radius: 10px 100px / 120px 100px;
     box-shadow: 0 12px 10px 12px rgba(0, 0, 0, 0.164);
 }
 
@@ -209,6 +209,17 @@ canvas {
     display: flex   ;
 }
 
+@media (max-width: 767px) {
+	form {
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        position: relative;  
+    }
+    canvas {
+        display: none;
+    }
+}
 /*contact.html styles*/
 
 .card-content-contact {

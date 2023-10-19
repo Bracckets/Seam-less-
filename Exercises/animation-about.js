@@ -50,7 +50,6 @@ ctx.fillText('A',30, 130)
 
 function animateN(ratio, x1, x2, y) {
     ratio = ratio || 0;
-    ctx.strokeStyle = "yellow"
     drawLine(x1,y+10,x2, y+10,ratio);
     drawLine(x1,y+20,x2, y+20,ratio, "lightgreen");
     drawLine(x1,y+30,x2, y+30,ratio, "cyan");
