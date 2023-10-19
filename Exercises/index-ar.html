@@ -35,6 +35,10 @@
         </ul>
     </nav>
     <main>
+        <div class="loading-animation" style="display:flex; justify-content: center">
+            <video src="icons\wait.mp4" autoPlay loop muted style="mix-blend-mode: multiply; scale: 20%;
+            "></video>
+        </div>
         <div class="card-content" id="card-content">
             <article class="article-block" id="website-description">
                 <img id="clock-icon" src="icons/chronometer.png">
@@ -92,5 +96,10 @@
     </main>
 </body>
 <script src="navScript.js"> </script>
+<script> $(function() {
+    $(".card-content").hide(0).delay(3000).fadeIn();
+    $(".loading-animation").delay(3000).hide(0).fadeOut();
+  });
+  </script>
 
 </html>
