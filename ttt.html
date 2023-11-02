@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .cell {
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: bolder;
+            background-color: beige;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cellLocked {
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: bolder;
+            background-color: beige;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .cell:hover {
+            background-color: blanchedalmond;
+        }
+
+        .row {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="turn">
+        Now it's is <span>X</span> turn
+    </h1>
+    <!-- Board -->
+    <div class="board">
+        <div class="row">
+            <div class="cell active"> </div>
+            <div class="cell active"> </div>
+            <div class="cell active"> </div>
+        </div>
+        <div class="row">
+            <div class="cell active"> </div>
+            <div class="cell active"> </div>
+            <div class="cell active"> </div>
+        </div>
+        <div class="row">
+            <div class="cell active"> </div>
+            <div class="cell active"> </div>
+            <div class="cell active"> </div>
+        </div>
+
+        <button onClick="window.location.reload(true)"> Reset </button>
+        <script>
+
+            // decided which turn is it
+            let turn = "X"
+            let gameEnded = false
+
+            // when we click on a cell add the letter 
+            let board = document.getElementsByClassName("board")[0]
+            let cells = document.getElementsByClassName("cell")
+            board.addEventListener("click", cellClicked)
+
+
+            function cellClicked(event) {
+                let cell = event.target
+
+                // For some reason, without this condition a click on a 
+                // a filled box would delete the entire cell row...
+                // I suspect that it has something to do with the
+                // event propagation.
+                if (cell.classList == "cell active") {
+                    cell.innerText = turn
+                    cell.style.pointerEvents = "none"
+                    cell.classList.remove("active")
+                }
+
+
+
+
+
+                // All possible win conditions 
+                /*
+                    [0, 1, 2],
+                    [3, 4, 5],
+                    [6, 7, 8],
+                    [0, 3, 6],
+                    [1, 4, 7],
+                    [2, 5, 8],
+                    [2, 4, 6],
+                    [0, 4, 8]
+                */
+
+                try {
+                    console.log(cells)
+                    if (cells[0].innerText === turn & cells[1].innerText === turn & cells[2].innerText === turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[3].innerText === turn & cells[4].innerText == turn & cells[5].innerText == turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[6].innerText === turn & cells[7].innerText == turn & cells[8].innerText == turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[0].innerText === turn & cells[3].innerText == turn & cells[6].innerText == turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[1].innerText === turn & cells[4].innerText == turn & cells[7].innerText == turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[2].innerText === turn & cells[5].innerText == turn & cells[8].innerText == turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[2].innerText === turn & cells[4].innerText == turn & cells[6].innerText == turn) {
+                        gameEnded = true
+                    }
+                    else if (cells[0].innerText === turn & cells[4].innerText == turn & cells[8].innerText == turn) {
+                        gameEnded = true
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+
+                count = 0
+                for (c of cells) {
+                    if (c.classList == "cell") {
+                        count += 1
+                    }
+                }
+
+                if (gameEnded) {
+                    winner = document.querySelector("#turn")
+                    winner.innerText = "Winner is: " + turn
+
+                }
+
+                else if (count == 9) {
+                    winner = document.querySelector("#turn")
+                    winner.innerText = "Draw"
+
+                }
+
+                else if (cell.classList == "cell") {
+                    // change turn
+                    turn = turn === "X" ? "O" : "X"
+                    //change title
+                    turnLetter = document.querySelector("#turn span")
+                    turnLetter.innerText = turn
+                }
+
+            }
+        </script>
+    </div>
+</body>
+
+</html>
