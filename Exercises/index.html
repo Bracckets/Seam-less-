@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seam[less]: Home Page</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="navScript.js"></script>
 </head>
 
 <body>
@@ -23,11 +24,11 @@
                 <span class="to-english"> ع </span>
             </a>
 
-        <img id="nav-hamburger" class="navbarIcon" src="icons/icn menu .icn-xs.png">
+            <img id="nav-hamburger" class="navbarIcon" src="icons/icn menu .icn-xs.png">
         </div>
 
     </header>
-    <nav class= "navigation" id="navigation">
+    <nav class="navigation" id="navigation">
         <ul>
             <li class="current-page"><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -35,8 +36,8 @@
         </ul>
     </nav>
     <main>
-        <div class="loading-animation" style="display:flex; justify-content: center">
-            <video src="icons\wait.mp4" autoPlay loop muted style="mix-blend-mode: multiply; scale: 20%;
+        <div class="loading-animation" id="loading-animation" style="display:flex; justify-content: center">
+            <video src="icons\wait.mp4" preload="auto" autoplay muted loop style="mix-blend-mode: multiply; scale: 20%;
             "></video>
         </div>
         <div class="card-content" id="card-content">
@@ -52,7 +53,7 @@
                     using the finest technologies in pattern recognition and machine learning.
                 </p>
             </article>
-            
+
             <article class="article-block" id="enterprise-description">
                 <img id="Enterprise-icon" src="icons/Enterprise icon.png">
                 <h3 class="paragraph-title">
@@ -63,11 +64,11 @@
                     using our finest technologies in pattern recognition and machine learning. With Seam[less],
                     Creating and dividing tasks to your employees has never been easier.
                 </p>
-                <a href="about.html">
-                    <button id="learn-more">Learn More
-                        <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
-                    </button>
-                </a>
+
+                <button onclick="window.location.href='about.html'" id="learn-more">Learn More
+                    <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
+                </button>
+
             </article>
             <article class="article-block" id="individual-description">
                 <img id="clock-icon" src="icons\individual.png">
@@ -84,23 +85,29 @@
                     always important; with
                     Seam[less] we easily allow you to create and share activities with your friends and family.
                 </p>
-                <a href="about.html">
-                    <button id="learn-more">Learn More
-                        <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
-                    </button>
-                </a>
+                <button onclick="window.location.href='about.html'" id="learn-more">Learn More
+                    <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
+                </button>
+
             </article>
         </div>
 
         <footer>
-            All rights reserved. Made by [ Brackets ]. Contact us: s202026720@kfupm.edu.sa
+            All rights reserved. Made by [ Brackets ]. Contact us: <a href="mailto: s202026720@kfupm.edu.sa">s202026720@kfupm.edu.sa</a>
         </footer>
     </main>
+    <script>
+    var video = document.getElementById("loading-animation");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("muted", "");
+    video.play();
+    </script>
 </body>
-<script src="navScript.js"> </script>
-<script> $(function() {
-    $(".card-content").hide(0).delay(3000).fadeIn();
-    $(".loading-animation").delay(3000).hide(0).fadeOut();
-  });
-  </script>
+
+<script> $(function () {
+        $(".card-content").hide(0).delay(3000).fadeIn();
+        $(".loading-animation").delay(3000).hide(0).fadeOut();
+    });
+</script>
+
 </html>

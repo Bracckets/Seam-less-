@@ -20,7 +20,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 2em;
+    margin-top: 75px;
     
 }
 
@@ -42,8 +42,7 @@ a {
 
 .top-header {
     position: relative;
-    margin-top: 35px;
-    margin-right: 26px;
+    margin: 1em 2em 1em 1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -55,7 +54,6 @@ a {
     text-decoration: none;
     font-size: 24px;
     font-style: normal;
-    margin-left: 35px;
     position: relative;
 
     
@@ -134,11 +132,17 @@ nav {
     justify-content: center
 }
 
+.page-title h2, u {
+    color: ghostwhite; 
+    text-underline-offset: 10px;
+    margin: 3% 5% 0 5%;
+    padding: 10px;
+}
 
 
 .article-block {
     background:linear-gradient(0deg,  #304ffd, #8a02c0);
-    margin: 3% 5% 2% 5%;
+    margin: 3% 5% 10% 5%;
     display: flex;
     padding: 35px 40px;
     flex-direction: column;
@@ -146,10 +150,21 @@ nav {
     gap: 20px;
     border-radius: 10px 100px / 120px 100px;
     box-shadow: 0 12px 10px 12px rgba(0, 0, 0, 0.164);
+    transition: all 0.3s ease-in-out;
 }
+
 
 .article-block:nth-child(odd) {
     background:linear-gradient(180deg,  #304ffd, #8a02c0);
+}
+
+.article-block:hover  {
+    scale: 105%; 
+   margin: 3% 5% 10% 5%;
+}
+#contact-article {
+    scale: 100%;
+    border-radius: 20px;
 }
 
 .article-block img {

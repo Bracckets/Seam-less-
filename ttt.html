@@ -14,11 +14,13 @@
             height: 100vh;
         }
 
+
+
         .cell {
             font-family: sans-serif;
             font-size: larger;
             font-weight: bolder;
-            background-color: beige;
+            background-color: #23a6d5;
             width: 100px;
             height: 100px;
             border: 1px solid black;
@@ -28,20 +30,7 @@
             align-items: center;
         }
 
-        .cellLocked {
-            font-family: sans-serif;
-            font-size: larger;
-            font-weight: bolder;
-            background-color: beige;
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-        }
 
         .cell:hover {
             background-color: blanchedalmond;
@@ -49,6 +38,31 @@
 
         .row {
             display: flex;
+            flex-direction: row;
+        }
+
+        #reset {
+            display: flex;
+            background-color: ghostwhite;
+            margin: 20px;
+            padding: 10px 20px;
+            align-items: center;
+            color: #23A6F0;
+            gap: 10px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 22px;
+            /* 157.143% */
+            letter-spacing: 0.2px;
+            border-radius: 37px;
+            border: 1px solid #23A6F0;
+        }
+
+        #reset:hover {
+            cursor: pointer;
+            filter: hue-rotate(180deg);
+            transition: 0.2s step-start;
         }
     </style>
 </head>
@@ -58,124 +72,239 @@
         Now it's is <span>X</span> turn
     </h1>
     <!-- Board -->
-    <div class="board">
+    <div id = "board" class="board">
         <div class="row">
-            <div class="cell active"> </div>
-            <div class="cell active"> </div>
-            <div class="cell active"> </div>
+            <button id="cell1" onkeydown="keyControl(event.key)" class="cell active"> </button>
+            <button id="cell2" onkeydown="keyControl(event.key)" class="cell active"> </button>
+            <button id="cell3" onkeydown="keyControl(event.key)" class="cell active"> </button>
         </div>
         <div class="row">
-            <div class="cell active"> </div>
-            <div class="cell active"> </div>
-            <div class="cell active"> </div>
+            <button id="cell4" onkeydown="keyControl(event.key)" class="cell active"> </button>
+            <button id="cell5" onkeydown="keyControl(event.key)" class="cell active"> </button>
+            <button id="cell6" onkeydown="keyControl(event.key)" class="cell active"> </button>
         </div>
         <div class="row">
-            <div class="cell active"> </div>
-            <div class="cell active"> </div>
-            <div class="cell active"> </div>
+            <button id="cell7" onkeydown="keyControl(event.key)" class="cell active"> </button>
+            <button id="cell8" onkeydown="keyControl(event.key)" class="cell active"> </button>
+            <button id="cell9" onkeydown="keyControl(event.key)" class="cell active"> </button>
         </div>
 
-        <button onClick="window.location.reload(true)"> Reset </button>
-        <script>
+    </div>
+    <button id='reset' onClick="window.location.reload(true)">
+        Reset
+    </button>
+    <script>
+        //initial keyboard cell on page loag
+        window.onload = function () {
+            document.getElementById('cell5').focus();
+        };
 
-            // decided which turn is it
-            let turn = "X"
-            let gameEnded = false
+        // decided which turn is it
+        let turn = "X"
+        let gameEnded = false
 
-            // when we click on a cell add the letter 
-            let board = document.getElementsByClassName("board")[0]
-            let cells = document.getElementsByClassName("cell")
-            board.addEventListener("click", cellClicked)
+        // when we click on a cell add the letter 
+        let board = document.getElementsByClassName("board")[0]
+        let cells = document.getElementsByClassName("cell")
+
+        board.addEventListener("click", cellClicked)
+
+        function cellClicked(event) {
+
+            let cell = event.target
+
+            console.log(event)
 
 
-            function cellClicked(event) {
-                let cell = event.target
+            // For some reason, without this condition a click on a 
+            // a filled box would delete the entire cell row...
+            // I suspect that it has something to do with the
+            // event propagation.
+            if (cell.classList == "cell active") {
+                cell.innerText = turn
+                cell.style.pointerEvents = "none"
+                cell.classList.remove("active")
+            }
 
-                // For some reason, without this condition a click on a 
-                // a filled box would delete the entire cell row...
-                // I suspect that it has something to do with the
-                // event propagation.
-                if (cell.classList == "cell active") {
-                    cell.innerText = turn
-                    cell.style.pointerEvents = "none"
-                    cell.classList.remove("active")
+
+
+
+
+            // All possible win conditions 
+            /*
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [2, 4, 6],
+                [0, 4, 8]
+            */
+
+            try {
+
+                if (cells[0].innerText === turn & cells[1].innerText === turn & cells[2].innerText === turn) {
+                    gameEnded = true
                 }
-
-
-
-
-
-                // All possible win conditions 
-                /*
-                    [0, 1, 2],
-                    [3, 4, 5],
-                    [6, 7, 8],
-                    [0, 3, 6],
-                    [1, 4, 7],
-                    [2, 5, 8],
-                    [2, 4, 6],
-                    [0, 4, 8]
-                */
-
-                try {
-                    console.log(cells)
-                    if (cells[0].innerText === turn & cells[1].innerText === turn & cells[2].innerText === turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[3].innerText === turn & cells[4].innerText == turn & cells[5].innerText == turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[6].innerText === turn & cells[7].innerText == turn & cells[8].innerText == turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[0].innerText === turn & cells[3].innerText == turn & cells[6].innerText == turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[1].innerText === turn & cells[4].innerText == turn & cells[7].innerText == turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[2].innerText === turn & cells[5].innerText == turn & cells[8].innerText == turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[2].innerText === turn & cells[4].innerText == turn & cells[6].innerText == turn) {
-                        gameEnded = true
-                    }
-                    else if (cells[0].innerText === turn & cells[4].innerText == turn & cells[8].innerText == turn) {
-                        gameEnded = true
-                    }
-                } catch (err) {
-                    console.log(err)
+                else if (cells[3].innerText === turn & cells[4].innerText == turn & cells[5].innerText == turn) {
+                    gameEnded = true
                 }
-
-                count = 0
-                for (c of cells) {
-                    if (c.classList == "cell") {
-                        count += 1
-                    }
+                else if (cells[6].innerText === turn & cells[7].innerText == turn & cells[8].innerText == turn) {
+                    gameEnded = true
                 }
-
-                if (gameEnded) {
-                    winner = document.querySelector("#turn")
-                    winner.innerText = "Winner is: " + turn
-
+                else if (cells[0].innerText === turn & cells[3].innerText == turn & cells[6].innerText == turn) {
+                    gameEnded = true
                 }
-
-                else if (count == 9) {
-                    winner = document.querySelector("#turn")
-                    winner.innerText = "Draw"
-
+                else if (cells[1].innerText === turn & cells[4].innerText == turn & cells[7].innerText == turn) {
+                    gameEnded = true
                 }
-
-                else if (cell.classList == "cell") {
-                    // change turn
-                    turn = turn === "X" ? "O" : "X"
-                    //change title
-                    turnLetter = document.querySelector("#turn span")
-                    turnLetter.innerText = turn
+                else if (cells[2].innerText === turn & cells[5].innerText == turn & cells[8].innerText == turn) {
+                    gameEnded = true
                 }
+                else if (cells[2].innerText === turn & cells[4].innerText == turn & cells[6].innerText == turn) {
+                    gameEnded = true
+                }
+                else if (cells[0].innerText === turn & cells[4].innerText == turn & cells[8].innerText == turn) {
+                    gameEnded = true
+                }
+            } catch (err) {
+                console.log(err)
+            }
+
+            count = 0
+            for (c of cells) {
+                if (c.classList == "cell") {
+                    count += 1
+                }
+            }
+
+            if (gameEnded) {
+                winner = document.querySelector("#turn")
+                winner.innerText = "Winner is: " + turn
 
             }
-        </script>
+
+            else if (count == 9) {
+                winner = document.querySelector("#turn")
+                winner.innerText = "Draw"
+
+            }
+
+            else if (cell.classList == "cell") {
+                // change turn
+                turn = turn === "X" ? "O" : "X"
+                //change title
+                turnLetter = document.querySelector("#turn span")
+                turnLetter.innerText = turn
+            }
+
+        }
+
+        // Keyboard controls
+
+        function keyControl(key) {
+            var cell1 = "cell1";
+            var cell2 = "cell2";
+            var cell3 = "cell3";
+            var cell4 = "cell4";
+            var cell5 = "cell5";
+            var cell6 = "cell6";
+            var cell7 = "cell7";
+            var cell8 = "cell8";
+            var cell9 = "cell9";
+
+            var sqrs = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9];
+
+
+            if (key == 'Enter') {
+                temp = document.activeElement;
+                document.getElementById(temp.id).click();
+                temp.disabled = true
+            }
+
+            if (key == 'ArrowRight') {
+                temp = document.activeElement;
+                for (var i = 0; i < 9; i++) {
+                    if (sqrs[i] == temp.id) {
+                        if (document.getElementById(sqrs[i + 1]).disabled == false) {
+                            document.getElementById(sqrs[i + 1]).focus();
+                        }
+                        else {
+                            for (var j = 2; j < 9; j++) {
+                                if (document.getElementById(sqrs[i + j]).disabled == false) {
+                                    document.getElementById(sqrs[i + j]).focus();
+                                    break
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            if (key == 'ArrowUp') {
+                temp = document.activeElement;
+                for (var i = 0; i < 9; i++) {
+                    if (sqrs[i] == temp.id) {
+                        if (document.getElementById(sqrs[i - 3]).disabled == false) {
+                            document.getElementById(sqrs[i - 3]).focus();
+                        }
+                        else {
+                            for (var j = 4; j < 9; j++) {
+                                if (document.getElementById(sqrs[i - j]).disabled == false) {
+                                    document.getElementById(sqrs[i - j]).focus();
+                                    break
+                                }
+                            }
+                        }
+
+
+                    }
+                }
+            }
+            if (key == 'ArrowDown') {
+                temp = document.activeElement;
+                for (var i = 0; i < 9; i++) {
+                    if (sqrs[i] == temp.id) {
+                        if (document.getElementById(sqrs[i + 3]).disabled == false) {
+                            document.getElementById(sqrs[i + 3]).focus();
+                        }
+                        else {
+                            for (var j = 4; j < 9; j++) {
+                                if (document.getElementById(sqrs[i + j]).disabled == false) {
+                                    document.getElementById(sqrs[i + j]).focus();
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (key == 'ArrowLeft') {
+                temp = document.activeElement;
+                for (var i = 0; i < 9; i++) {
+                    if (sqrs[i] == temp.id) {
+                        if (document.getElementById(sqrs[i - 1]).disabled == false) {
+                            document.getElementById(sqrs[i - 1]).focus();
+                        }
+                        else {
+                            for (var j = 2; j < 9; j++) {
+                                if (document.getElementById(sqrs[i - j]).disabled == false) {
+                                    document.getElementById(sqrs[i - j]).focus();
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+
+    </script>
     </div>
 </body>
 

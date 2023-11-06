@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seam[less]: Home Page</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="navScript.js"> </script>
 </head>
 
 <body>
@@ -22,12 +23,12 @@
                 <span class="to-english"> en </span>
             </a>
 
-        <img id="nav-hamburger" class="navbarIcon" src="icons/icn menu .icn-xs.png">
+            <img id="nav-hamburger" class="navbarIcon" src="icons/icn menu .icn-xs.png">
         </div>
-            
+
 
     </header>
-    <nav class= "navigation" id="navigation">
+    <nav class="navigation" id="navigation">
         <ul>
             <li class="current-page"><a href="index.html">الصفحة الرئيسية</a></li>
             <li><a href="about.html">عن التطبيق</a></li>
@@ -37,7 +38,7 @@
     <main>
         <div class="loading-animation" style="display:flex; justify-content: center">
             <video src="icons\wait.mp4" autoPlay loop muted style="mix-blend-mode: multiply; scale: 20%;
-            "></video>
+            ">
         </div>
         <div class="card-content" id="card-content">
             <article class="article-block" id="website-description">
@@ -52,7 +53,7 @@
                     باستخدام أرقى التقنيات في التعرف على الأنماط والتعلم الآلي
                 </p>
             </article>
-            
+
             <article class="article-block" id="enterprise-description">
                 <img id="Enterprise-icon" src="icons/Enterprise icon.png">
                 <h3 class="paragraph-title">
@@ -61,13 +62,13 @@
                 <p class="paragraph">
                     خذ عملك إلى مستوى جديد كليا
                     باستخدام أفضل التقنيات لدينا في التعرف على الأنماط والتعلم الآلي. مع Seam[less]،
-                 إنشاء المهام وتقسيمها على موظفيك أسهل من أي وقت مضى.
+                    إنشاء المهام وتقسيمها على موظفيك أسهل من أي وقت مضى.
                 </p>
-                <a href="about.html">
-                    <button id="learn-more" style="font-family: ReadexPro;">للمزيد
-                        <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
-                    </button>
-                </a>
+                <button onclick="window.location.href='about.html'" id="learn-more"
+                    style="font-family: ReadexPro;">للمزيد
+                    <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
+                </button>
+
             </article>
             <article class="article-block" id="individual-description">
                 <img id="clock-icon" src="icons\individual.png">
@@ -82,11 +83,11 @@
                     مهم دائما؛ مع
                     Seam[less] نسمح لك بسهولة بإنشاء الأنشطة ومشاركتها مع أصدقائك وعائلتك.
                 </p>
-                <a href="about.html">
-                    <button id="learn-more" style="font-family: ReadexPro;">للمزيد
-                        <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
-                    </button>
-                </a>
+
+                <button onclick="window.location.href='about.html'" id="learn-more"
+                    style="font-family: ReadexPro;">للمزيد
+                    <img style="width: 12px; height: 16px;" src="icons/icn arrow-right .icn-xs.png">
+                </button>
             </article>
         </div>
 
@@ -95,11 +96,11 @@
         </footer>
     </main>
 </body>
-<script src="navScript.js"> </script>
-<script> $(function() {
-    $(".card-content").hide(0).delay(3000).fadeIn();
-    $(".loading-animation").delay(3000).hide(0).fadeOut();
-  });
-  </script>
+
+<script> $(function () {
+        $(".card-content").hide(0).delay(3000).fadeIn();
+        $(".loading-animation").delay(3000).hide(0).fadeOut();
+    });
+</script>
 
 </html>
