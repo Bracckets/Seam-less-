@@ -7,11 +7,28 @@
     <title>Document</title>
     <style>
         body {
+            background: linear-gradient(45deg, #e73cd0, #9b52ee, #23a6d5);
+            background-size: 400% 500%;
+            animation: gradient 10s ease-in-out infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
 
@@ -34,6 +51,11 @@
 
         .cell:hover {
             background-color: blanchedalmond;
+        }
+
+        .cell:disabled {
+            color: white;
+            background-color: #224552;
         }
 
         .row {
@@ -72,24 +94,25 @@
         Now it's is <span>X</span> turn
     </h1>
     <!-- Board -->
-    <div id = "board" class="board">
-        <div class="row">
+    <div id="board" class="board">
+        <div id="row1" class="row">
             <button id="cell1" onkeydown="keyControl(event.key)" class="cell active"> </button>
             <button id="cell2" onkeydown="keyControl(event.key)" class="cell active"> </button>
             <button id="cell3" onkeydown="keyControl(event.key)" class="cell active"> </button>
         </div>
-        <div class="row">
+        <div id="row2" class="row">
             <button id="cell4" onkeydown="keyControl(event.key)" class="cell active"> </button>
             <button id="cell5" onkeydown="keyControl(event.key)" class="cell active"> </button>
             <button id="cell6" onkeydown="keyControl(event.key)" class="cell active"> </button>
         </div>
-        <div class="row">
+        <div id="row3" class="row">
             <button id="cell7" onkeydown="keyControl(event.key)" class="cell active"> </button>
             <button id="cell8" onkeydown="keyControl(event.key)" class="cell active"> </button>
             <button id="cell9" onkeydown="keyControl(event.key)" class="cell active"> </button>
         </div>
 
     </div>
+    <p> left: left Arrow, right: right Arrow, press: Enter or Space</p>
     <button id='reset' onClick="window.location.reload(true)">
         Reset
     </button>
@@ -123,11 +146,9 @@
             if (cell.classList == "cell active") {
                 cell.innerText = turn
                 cell.style.pointerEvents = "none"
+                cell.disabled = true
                 cell.classList.remove("active")
             }
-
-
-
 
 
             // All possible win conditions 
@@ -182,6 +203,9 @@
             if (gameEnded) {
                 winner = document.querySelector("#turn")
                 winner.innerText = "Winner is: " + turn
+                // helper function, disables all cells
+                disableAll()
+
 
             }
 
@@ -201,6 +225,14 @@
 
         }
 
+        function disableAll() {
+            cells = document.getElementsByClassName("cell")
+            for (cell of cells) {
+                cell.disabled = true
+            }
+        }
+
+
         // Keyboard controls
 
         function keyControl(key) {
@@ -219,8 +251,20 @@
 
             if (key == 'Enter') {
                 temp = document.activeElement;
-                document.getElementById(temp.id).click();
-                temp.disabled = true
+                document.getElementById(temp.id).click()
+
+                // Must add delay since the enter key would trigger the target
+                //square and the next available one.
+                // Now, after the trigger is finished, it must move to the next available square
+                setTimeout(function () {
+                    for (var j = 0; j < 9; j++) {
+                        if (document.getElementById(sqrs[j]).disabled == false) {
+                            document.getElementById(sqrs[j]).focus();
+                            break
+                        }
+                    }
+                }, 250);
+
             }
 
             if (key == 'ArrowRight') {
@@ -242,44 +286,7 @@
                     }
                 }
             }
-            if (key == 'ArrowUp') {
-                temp = document.activeElement;
-                for (var i = 0; i < 9; i++) {
-                    if (sqrs[i] == temp.id) {
-                        if (document.getElementById(sqrs[i - 3]).disabled == false) {
-                            document.getElementById(sqrs[i - 3]).focus();
-                        }
-                        else {
-                            for (var j = 4; j < 9; j++) {
-                                if (document.getElementById(sqrs[i - j]).disabled == false) {
-                                    document.getElementById(sqrs[i - j]).focus();
-                                    break
-                                }
-                            }
-                        }
 
-
-                    }
-                }
-            }
-            if (key == 'ArrowDown') {
-                temp = document.activeElement;
-                for (var i = 0; i < 9; i++) {
-                    if (sqrs[i] == temp.id) {
-                        if (document.getElementById(sqrs[i + 3]).disabled == false) {
-                            document.getElementById(sqrs[i + 3]).focus();
-                        }
-                        else {
-                            for (var j = 4; j < 9; j++) {
-                                if (document.getElementById(sqrs[i + j]).disabled == false) {
-                                    document.getElementById(sqrs[i + j]).focus();
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
-            }
             if (key == 'ArrowLeft') {
                 temp = document.activeElement;
                 for (var i = 0; i < 9; i++) {
@@ -300,10 +307,6 @@
             }
 
         }
-
-
-
-
     </script>
     </div>
 </body>
