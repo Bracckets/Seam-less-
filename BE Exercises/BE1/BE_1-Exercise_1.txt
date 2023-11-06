@@ -1,0 +1,12 @@
+URL: https://twitter.com/home
+
+IP adress: 104.244.42.1
+
+The webiste mad 306 http requests
+
+jpeg, xhr, fetch, script
+
+The largest file returned was an mp4 video with a size of 779 kB
+
+it took 1.33s [1330 ms]
+
