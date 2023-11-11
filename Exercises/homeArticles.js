@@ -56,7 +56,7 @@ for (post of posts) {
         let button = document.createElement("button")
         button.textContent = post.btntext
         button.addEventListener("click", function() {
-            window.location.href = post.btnloc
+            goto(post.btnloc)
         })
         let img = document.createElement("img")
         img.style.width = "12px"
