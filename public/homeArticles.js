@@ -26,7 +26,6 @@ posts =
     ]
 
 for (post of posts) {
-    console.log(post)
     let article = document.createElement("article")
     article.classList.add("article-block")
     
@@ -37,8 +36,6 @@ for (post of posts) {
     paragraph.classList.add("paragraph")
     
     let img = document.createElement("img")
-    
-    console.log(post.img)
     
     img.src = post.src
     img.alt = "Sample Image"

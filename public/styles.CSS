@@ -71,16 +71,15 @@ img.navbarIcon:hover {
 }
 
 nav {
-    position: absolute;
     visibility: hidden;
-    right: 50%;
+    position: absolute;
     display: flex;
     transform: scale(0);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin-top: 53px;
-    transition: .6s all cubic-bezier(0.19, 1, 0.22, 1);
+   
 }
 
 .active {
@@ -212,7 +211,7 @@ footer {
     font-size: smaller;
 }
 
-/* About.html Content */
+/*------------------------------ About.html Content------------------------------ */
 
 .content-about {
     display: flex;
@@ -234,7 +233,24 @@ canvas {
     canvas {
         display: none;
     }
+    .clocks p{
+        display: none;
+    }
 }
+
+.clocks {
+    display: flex;
+    flex-direction: row;
+}
+
+.clocks canvas {
+    scale: 0.6;
+}
+
+.clocks p {
+    font-size: large;
+}
+
 /*contact.html styles*/
 
 .card-content-contact {
